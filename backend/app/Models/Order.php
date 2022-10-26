@@ -29,6 +29,10 @@ class Order extends Model
     {
         return $this->belongsTo(Driver::class);
     }
+    public function chatting()
+    {
+        return $this->hasMany(Chatting::class);
+    }
     public function getUserAttribute()
     {
         return $this->belongsTo(User::class);

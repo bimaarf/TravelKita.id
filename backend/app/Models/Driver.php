@@ -35,4 +35,8 @@ class Driver extends Model
     {
         return $this->hasMany(Checkouts::class);
     }
+    public function chatting()
+    {
+        return $this->hasMany(Chatting::class);
+    }
 }

@@ -1,5 +1,5 @@
 import AsyncStorage from '@react-native-community/async-storage';
-import {useIsFocused} from '@react-navigation/native';
+import {useIsFocused, useNavigation} from '@react-navigation/native';
 import axios from 'axios';
 import react, {useEffect, useState} from 'react';
 import {
@@ -12,10 +12,9 @@ import {
   View,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import IconEntypo from 'react-native-vector-icons/Entypo';
 const DetailPesanan = params => {
-  console.log('====================================');
-  console.log(params.route.params.item);
-  console.log('====================================');
+  const navRedirect = useNavigation();
   const [roleLocal, setRoleLocal] = useState();
   const isFocused = useIsFocused();
   const [uToken, setUToken] = useState();
@@ -416,14 +415,18 @@ const DetailPesanan = params => {
                 </TouchableOpacity>
               )}
               {getStatus === 'Diterima' && (
-                <TouchableOpacity onPress={handleProses} style={styles.buttonProses}>
+                <TouchableOpacity
+                  onPress={handleProses}
+                  style={styles.buttonProses}>
                   <Text style={{color: '#fff', fontWeight: 'bold'}}>
                     Proses Pesanan
                   </Text>
                 </TouchableOpacity>
               )}
               {getStatus === 'Diproses' && (
-                <TouchableOpacity onPress={handleSelesai} style={styles.buttonSelesai}>
+                <TouchableOpacity
+                  onPress={handleSelesai}
+                  style={styles.buttonSelesai}>
                   <Text style={{color: '#fff', fontWeight: 'bold'}}>
                     Pesanan Selesai
                   </Text>
@@ -438,6 +441,19 @@ const DetailPesanan = params => {
               )}
             </>
           )}
+          <TouchableOpacity
+            onPress={() =>
+              navRedirect.navigate('Chatting', {
+                chatParams: params.route.params.item,
+              })
+            }
+            style={styles.buttonChatting}>
+            <IconEntypo
+              name="paper-plane"
+              style={{color: 'white', marginRight: 5}}
+            />
+            <Text style={{color: 'white', fontWeight: 'bold'}}>Chatting</Text>
+          </TouchableOpacity>
         </View>
       </ScrollView>
     </>
@@ -445,6 +461,17 @@ const DetailPesanan = params => {
 };
 //
 const styles = StyleSheet.create({
+  buttonChatting: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#05860b',
+    paddingVertical: 10,
+    paddingHorizontal: 20,
+    marginVertical: 10,
+    borderRadius: 10,
+    alignItems: 'center',
+  },
   textTitle: {
     color: '#777777',
     fontWeight: '700',

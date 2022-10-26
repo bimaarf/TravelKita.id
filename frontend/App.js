@@ -9,6 +9,7 @@ import Home from './Pages/Home';
 import Travel from './Pages/Travel';
 import Checkout from './Pages/Checkout';
 import DetailPesanan from './Pages/User/DetailPesanan';
+import Chatting from './Pages/Chats/Chatting';
 const Stack = createNativeStackNavigator();
 // axios.defaults.baseURL = 'https://api-porto.bimarf.in/';
 axios.defaults.baseURL = 'https://travelkita.bimarf.in/';
@@ -50,6 +51,11 @@ const App = () => {
           name="DetailPesanan"
           component={DetailPesanan}
           options={{title: 'DetailPesanan', headerShown: true}}
+        />
+        <Stack.Screen
+          name="Chatting"
+          component={Chatting}
+          options={{title: 'Chatting', headerShown: true}}
         />
       </Stack.Navigator>
     </NavigationContainer>

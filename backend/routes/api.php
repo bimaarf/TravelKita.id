@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\AuthController;
+use App\Http\Controllers\ChattingController;
 use App\Http\Controllers\DriverController;
 use App\Http\Controllers\OrderController;
 
@@ -20,10 +21,13 @@ use App\Http\Controllers\OrderController;
 Route::post('register', [AuthController::class, 'register']);
 Route::post('login', [AuthController::class, 'login']);
 Route::get('driver/show', [DriverController::class, 'showDriver']);
+Route::get('chatting/show', [ChattingController::class, 'show']);
+Route::post('chatting/store', [ChattingController::class, 'store']);
 Route::middleware(['auth:sanctum'])->group(function () {
     Route::post('order/proses', [DriverController::class, 'prosesPesanan']);
     Route::post('logout', [AuthController::class, 'logout']);
     Route::post('order/store', [OrderController::class, 'store']);
 });
 Route::get('order/show', [OrderController::class, 'show']);
+
 Route::get('check/show', [OrderController::class, 'showCheck']);
